@@ -9,7 +9,6 @@ import { DRAG_MAP_MARKER } from "../constants/action-types";
 const initialState = {
     categories: [],
     locations: [],
-    checkboxes: []
 };
 
 function rootReducer(state = initialState, action) {

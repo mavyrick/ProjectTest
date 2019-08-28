@@ -1,5 +1,5 @@
 import React from 'react';
-import AppRouter from '../AppRouter/AppRouter'
+import AppRouter from './AppRouter'
 
 const appStyles = {
     paddingTop: 65,
@@ -9,10 +9,10 @@ const appStyles = {
 const App = () => {
 
     return (
-    <div className="App" style={appStyles}>
-        <AppRouter />
-    </div>
-  );
+        <div className="App" style={appStyles}>
+            <AppRouter />
+        </div>
+    );
 }
 
 export default App;

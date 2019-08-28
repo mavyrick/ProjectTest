@@ -1,13 +1,8 @@
 import React from "react";
-import IconButton from "@material-ui/core/IconButton";
-import DeleteIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import {makeStyles} from "@material-ui/core";
-import Input from '@material-ui/core/Input';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FilledInput from '@material-ui/core/FilledInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { connect } from "react-redux";
@@ -31,22 +26,10 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const CategorySelect = ({categories, handleUpdateInput, selectEmpty}) => {
+// Good example of managing the state of a component with a parent component
+const CategorySelect = ({categories, handleSelect, categorySelect}) => {
 
     const classes = useStyles();
-
-    const [categorySelect, setSelect] = React.useState("");
-
-    const handleSelect = (e) => {
-        setSelect(e.target.value)
-        handleUpdateInput(e, e.target.value)
-    }
-
-    // const handleSelectEmpty {
-    //     if (selectEmpty === true) {
-    //
-    //     }
-    // }
 
     return (
         <FormControl className={classes.formControl} variant="outlined">
@@ -55,7 +38,7 @@ const CategorySelect = ({categories, handleUpdateInput, selectEmpty}) => {
                 name="category"
                 value={categorySelect}
                 input={<OutlinedInput />}
-                onChange={handleSelect}
+                onChange={e => handleSelect(e.target.value)}
             >
                 {categories.map((item) =>
                     <MenuItem key={item.id} value={item.category}>

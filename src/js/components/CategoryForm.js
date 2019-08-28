@@ -4,7 +4,7 @@ import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import uuidv1 from "uuid";
 import {connect} from "react-redux";
-import {addCategory} from "../../actions/actions";
+import {addCategory} from "../actions/actions";
 import TextField from '@material-ui/core/TextField';
 import Divider from '@material-ui/core/Divider';
 
@@ -45,9 +45,7 @@ const CategoryForm = (props) => {
 
     const classes = useStyles();
 
-    const [categoryInput, setInput] = useState({
-        category: ""
-    });
+    const [categoryInput, setInput] = useState({ category: "" });
 
     const updateInput = (e) => {
         setInput({
@@ -56,7 +54,7 @@ const CategoryForm = (props) => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         if (categoryInput.category === "") {
             alert("Category must be filled")
         } else {
@@ -78,7 +76,7 @@ const CategoryForm = (props) => {
                 <TextField
                     id="standard-name"
                     className={classes.textField}
-                    label="Category"
+                    label="New category"
                     variant="outlined"
                     inputProps={{
                         'aria-label': 'description',

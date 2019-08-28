@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
@@ -29,31 +28,49 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const navbarStyle = {
+    description: {
+        fontSize: 14
+    }
+}
+
 const Navbar = props => {
 
     const classes = useStyles();
 
-    const [toolbarState, setToolbarState] = React.useState({
+    const [navbarState, setNavbarState] = React.useState({
         title: "",
-        // actionButtonsType: "",
-        // actionButtonsHidden: true
+        description: ""
     });
 
+    // Set title based on route
     const onMount = (path) => {
         if (path === "/") {
-            setToolbarState({title: "myLocations"})
+            setNavbarState({
+                title: "myLocations",
+                description: ""
+            })
         } else if (path === "/categories") {
-            setToolbarState({title: "Categories"})
+            setNavbarState({
+                title: "Categories",
+                description: ""
+            })
         } else if (path === "/locations") {
-            setToolbarState({title: "Locations"})
-        } else {
-            setToolbarState({title: "Map"})
+            setNavbarState({
+                title: "Locations",
+                description: ""
+            })
+        } else if (path === "/map") {
+            setNavbarState({
+                title: "Map",
+                description: "(drag markers to select coordinates)"
+            })
         }
-    }
+    };
 
     useEffect(() => {
         onMount(props.location.pathname)
-    }, [])
+    }, []);
 
     return (
         <div className={classes.root}>
@@ -63,27 +80,26 @@ const Navbar = props => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                        {toolbarState.title}
+                        {navbarState.title} <span style={navbarStyle.description}>{navbarState.description}</span>
                     </Typography>
                     <div className="action-buttons">
-                    <Button
-                        color="inherit"
-                        onClick={() => console.log(props.location.pathname)}
-                    >
-                        Login
-                    </Button>
-                    <Button
-                        color="inherit"
-                        onClick={() => console.log(props.che)}
-                    >
-                        Sign Up
-                    </Button>
+                        <Button
+                            color="inherit"
+                            onClick={() => console.log(props.location.pathname)}
+                        >
+                            Login
+                        </Button>
+                        <Button
+                            color="inherit"
+                            onClick={() => console.log(props.che)}
+                        >
+                            Sign Up
+                        </Button>
                     </div>
                 </Toolbar>
             </AppBar>
         </div>
     );
-}
-
+};
 
 export default connect(mapStateToProps)(Navbar);

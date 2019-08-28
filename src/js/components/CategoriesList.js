@@ -1,5 +1,5 @@
 import React from 'react';
-import CategoriesListToolbar from '../CategoriesListToolbar/CategoriesListToolbar'
+import CategoriesListToolbar from './CategoriesListToolbar'
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -12,8 +12,8 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import {connect} from "react-redux";
-import {deleteCategory} from "../../actions/actions";
-import CategoryEditForm from "../CategoryEditForm/CategoryEditForm";
+import {deleteCategory} from "../actions/actions";
+import CategoryEditForm from "./CategoryEditForm";
 
 const mapStateToProps = state => {
     return {categories: state.categories};
@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => {
     return {
         deleteCategory: category => dispatch(deleteCategory(category))
     };
-}
+};
 
 function desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -171,7 +171,7 @@ const CategoriesList = (props) => {
         }
     };
 
-    function handleClick(event, id) {
+    function handleSelectClick(event, id) {
         const selectedIndex = selected.indexOf(id);
         let newSelected = [];
 
@@ -248,7 +248,7 @@ const CategoriesList = (props) => {
                                                     index={index}
                                                     isItemSelected={isItemSelected}
                                                     labelId={labelId}
-                                                    doneEdit={handleClick}
+                                                    doneEdit={handleSelectClick}
                                                 />
                                             )
                                         } else {
@@ -263,7 +263,7 @@ const CategoriesList = (props) => {
                                                             checked={isItemSelected}
                                                             inputProps={{'aria-labelledby': labelId}}
                                                             role="checkbox"
-                                                            onClick={event => handleClick(event, item.id)}
+                                                            onClick={event => handleSelectClick(event, item.id)}
                                                         />
                                                     </TableCell>
                                                     <TableCell component="th" id={labelId} scope="row" padding="none">

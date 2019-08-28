@@ -1,6 +1,6 @@
 import React from 'react';
-import CategoryForm from '../CategoryForm/CategoryForm'
-import CategoriesList from '../CategoriesList/CategoriesList'
+import CategoryForm from './CategoryForm'
+import CategoriesList from './CategoriesList'
 
 export default function CategoriesScreen() {
     return (

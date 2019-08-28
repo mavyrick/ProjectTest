@@ -1,7 +1,7 @@
 import React from 'react';
-import ListMap from '../ListMap/ListMap'
-import LocationsListToolbar from '../LocationsListToolbar/LocationsListToolbar'
-import EditForm from '../LocationEditForm/LocationEditForm'
+import ListMap from './ListMap'
+import LocationsListToolbar from './LocationsListToolbar'
+import EditForm from './LocationEditForm'
 import PropTypes from 'prop-types';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -14,7 +14,7 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 import { connect } from "react-redux";
-import { deleteLocation } from "../../actions/actions";
+import { deleteLocation } from "../actions/actions";
 
 const mapStateToProps = state => {
     return { locations: state.locations };
@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => {
     return {
         deleteLocation: location => dispatch(deleteLocation(location))
     };
-}
+};
 
 function desc(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -169,12 +169,12 @@ const LocationsList = (props) => {
         } else {
             setMapVisible(true)
         }
-    }
+    };
 
-    // To be passed down to the toolbar to unchecked all the selects on delete.
+    // To be passed down to the toolbar to uncheck all the selects on delete.
     const uncheckSelects = () => {
         setSelected([])
-    }
+    };
 
     const makeEditable = () => {
         if (editable) {
@@ -182,9 +182,9 @@ const LocationsList = (props) => {
         } else {
             setEditable(true)
         }
-    }
+    };
 
-    function handleClick(event, id) {
+    function handleSelectClick(event, id) {
         const selectedIndex = selected.indexOf(id);
         let newSelected = [];
 
@@ -215,6 +215,7 @@ const LocationsList = (props) => {
         setPage(0);
     }
 
+    // Determine whether latitude value is North or South
     const getLatHemisphere = (coordinate) => {
         if (coordinate > 0) {
             return "N"
@@ -223,8 +224,9 @@ const LocationsList = (props) => {
         } else {
             return ""
         }
-    }
+    };
 
+    // Determine whether longitude value is East or West
     const getLongHemisphere = (coordinate) => {
         if (coordinate > 0) {
             return "E"
@@ -233,7 +235,7 @@ const LocationsList = (props) => {
         } else {
             return ""
         }
-    }
+    };
 
     const isSelected = id => selected.indexOf(id) !== -1;
 
@@ -303,8 +305,8 @@ const LocationsList = (props) => {
                                                         index={index}
                                                         isItemSelected={isItemSelected}
                                                         labelId={labelId}
-                                                        onClick={event => handleClick(event, item.id)}
-                                                        doneEdit={handleClick}
+                                                        onClick={event => handleSelectClick(event, item.id)}
+                                                        doneEdit={handleSelectClick}
                                                     />
                                                 )
                                             } else {
@@ -312,21 +314,15 @@ const LocationsList = (props) => {
                                                 return (
                                                     <TableRow
                                                         hover
-                                                        // onClick={event => handleClick(event, item.id)}
-                                                        // role="checkbox"
-                                                        // aria-checked={isItemSelected}
                                                         tabIndex={-1}
                                                         key={item.id}
-                                                        // selected={isItemSelected}
                                                     >
                                                         <TableCell padding="checkbox">
                                                             <Checkbox
                                                                 checked={isItemSelected}
                                                                 inputProps={{'aria-labelledby': labelId}}
                                                                 role="checkbox"
-                                                                // aria-checked={isItemSelected}
-                                                                // selected={isItemSelected}
-                                                                onClick={e => handleClick(e, item.id)}
+                                                                onClick={e => handleSelectClick(e, item.id)}
                                                             />
                                                         </TableCell>
                                                         <TableCell component="th" id={labelId} scope="row" padding="none">
@@ -335,7 +331,7 @@ const LocationsList = (props) => {
                                                         <TableCell>{item.address}</TableCell>
                                                         <TableCell>
                                                             {Math.abs(lat)}°{getLatHemisphere(lat)}
-                                                        , {Math.abs(long)}°{getLongHemisphere(long)}
+                                                            , {Math.abs(long)}°{getLongHemisphere(long)}
                                                         </TableCell>
                                                         <TableCell>{item.category}</TableCell>
                                                     </TableRow>
@@ -368,8 +364,7 @@ const LocationsList = (props) => {
                 </div>
             </div>
         )
-
     }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocationsList);

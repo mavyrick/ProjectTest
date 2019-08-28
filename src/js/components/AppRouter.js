@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
-import HomeScreen from '../HomeScreen/HomeScreen'
-import CategoriesScreen from '../CategoriesScreen/CategoriesScreen'
-import LocationsScreen from '../LocationsScreen/LocationsScreen'
-import MapScreen from '../MapScreen/MapScreen'
+import HomeScreen from './HomeScreen'
+import CategoriesScreen from './CategoriesScreen'
+import LocationsScreen from './LocationsScreen'
+import MapScreen from './MapScreen'
 import { makeStyles } from '@material-ui/core/styles';
-import Navbar from '../Navbar/Navbar.js'
+import Navbar from './Navbar'
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from '@material-ui/icons/Home';
@@ -19,10 +19,8 @@ const useStyles = makeStyles({
         width: "100%",
         position: "fixed",
         bottom: 0,
-        // right: 0,
         backgroundColor: "#4350AF",
         zIndex: 100,
-        // borderTopLeftRadius: 10
     },
 });
 
@@ -41,7 +39,7 @@ export default function AppRouter() {
 
     const [value, setValue] = React.useState(0);
 
-    const AppToolbarRouterProps = withRouter(props => <Navbar {...props}/>)
+    const AppToolbarRouterProps = withRouter(props => <Navbar {...props} />)
 
     return (
         <Router>

@@ -4,7 +4,7 @@ import MapMarker from '@material-ui/icons/Room';
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
 import { connect } from "react-redux";
-import { dragMapMarker } from "../../actions/actions";
+import { dragMapMarker } from "../actions/actions";
 
 const mapStateToProps = state => {
     return { locations: state.locations };
@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => {
     return {
         dragMapMarker: location => dispatch(dragMapMarker(location)),
     };
-}
+};
 
 const TOKEN = 'pk.eyJ1IjoianNvcm9raW4iLCJhIjoiY2p6cmdzejZqMTdtYzNucjJraXF6bjh2NCJ9.9kSI3FXVtdjHAYRS6ycVZQ';
 
@@ -50,13 +50,6 @@ const MapScreen = props => {
             id: id
         })
     };
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            alert('TEST')
-        }, 5000);
-        return () => clearTimeout(timer);
-    }, []);
 
     return (
         <div>

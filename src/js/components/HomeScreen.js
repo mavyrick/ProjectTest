@@ -13,11 +13,17 @@ export default function HomeScreen() {
                 Welcome to myLocations!
             </h1>
             <ul>
-                <li>I wrote this application using only functional components, all states are managed using hooks.</li>
+                <li>I wrote this application using only functional components using hooks.</li>
+                <br />
+                <li>The state is managed using Redux.</li>
                 <br />
                 <li>Try dragging the markers on the maps to choose new coordinates!</li>
                 <br />
                 <li>Using the checkboxes you can choose which locations are shown on the location page map.</li>
+                <br />
+                <li>I used the React Material UI library for many of the features.</li>
+                <br />
+                <li>For the maps I used react-map-gl and Mapbox.</li>
                 <br />
                 <li>The UI/UX still needs work. There are many design features I would like to work on in the future.</li>
                 <br />

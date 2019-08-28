@@ -7,13 +7,13 @@ import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/AddCircle';
 import Input from '@material-ui/core/Input';
 import { connect } from "react-redux";
-import {editCategory} from "../../actions/actions";
+import {editCategory} from "../actions/actions";
 
 const mapDispatchToProps = dispatch => {
     return {
         editCategory: category => dispatch(editCategory(category))
     };
-}
+};
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -40,8 +40,9 @@ const editStyle = {
     icon: {
         color: "#4350AF"
     }
-}
+};
 
+// Form for editing a single category
 const CategoryEditForm = (props) => {
 
     const {item, isItemSelected, doneEdit, labelId} = props
@@ -50,20 +51,20 @@ const CategoryEditForm = (props) => {
 
     const [editInput, setInput] = useState({
         category: item.category,
-    })
+    });
 
     const updateInput = (e) => {
         setInput({
             ...editInput,
             "category": e.target.value
-        })
+        });
         console.log(editInput)
-    }
+    };
 
     const handleSubmit = (e) => {
         props.editCategory({ ...editInput, id: item.id })
         doneEdit(e, item.id)
-    }
+    };
 
     return (
         <TableRow
@@ -101,6 +102,6 @@ const CategoryEditForm = (props) => {
             </TableCell>
         </TableRow>
     )
-}
+};
 
 export default connect(null, mapDispatchToProps)(CategoryEditForm);

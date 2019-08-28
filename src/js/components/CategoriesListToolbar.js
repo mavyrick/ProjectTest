@@ -101,7 +101,6 @@ const CategoriesListToolbar = props => {
     )
 };
 
-
 CategoriesListToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import EditSelect from '../EditSelect/EditSelect'
+import EditSelect from './EditSelect'
 import { makeStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
@@ -8,7 +8,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import AddIcon from '@material-ui/icons/AddCircle';
 import Input from '@material-ui/core/Input';
 import { connect } from "react-redux";
-import {editLocation} from "../../actions/actions";
+import {editLocation} from "../actions/actions";
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -49,6 +49,7 @@ const editStyle = {
     }
 };
 
+// Form for editing a single location
 const LocationEditForm = (props) => {
 
     const {item, isItemSelected, doneEdit, labelId} = props
@@ -80,6 +81,7 @@ const LocationEditForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         let filled = true;
+        // Check if any fields are empty
         for (let key in editInput) {
             if (editInput[key] === "") {
                 filled = false;
@@ -104,7 +106,6 @@ const LocationEditForm = (props) => {
     };
 
     return (
-
         <TableRow
             tabIndex={-1}
             key={item.id}
@@ -129,7 +130,6 @@ const LocationEditForm = (props) => {
                 <Input
                     className={classes.input}
                     name="name"
-                    // defaultValue={item.name}
                     value={editInput.name}
                     inputProps={{
                         'aria-label': 'description',
@@ -142,7 +142,6 @@ const LocationEditForm = (props) => {
                 <Input
                     className={classes.input}
                     name="address"
-                    // defaultValue={item.address}
                     value={editInput.address}
                     inputProps={{
                         'aria-label': 'description',
@@ -155,7 +154,6 @@ const LocationEditForm = (props) => {
                 <Input
                     className={item.latitude}
                     name="latitude"
-                    // defaultValue={item.coordinates}
                     value={editInput.latitude}
                     inputProps={{
                         'aria-label': 'description',
@@ -166,7 +164,6 @@ const LocationEditForm = (props) => {
                 <Input
                     className={item.longitude}
                     name="longitude"
-                    // defaultValue={item.coordinates}
                     value={editInput.longitude}
                     inputProps={{
                         'aria-label': 'description',

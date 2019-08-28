@@ -1,5 +1,5 @@
 import { createStore } from "redux";
-import rootReducer from "../reducers/index";
+import rootReducer from "../reducers/reducer";
 import { loadState, saveState } from "../LocalStorage/localStorage.js"
 
 const persistedState = loadState();
@@ -15,7 +15,5 @@ store.subscribe(() => {
         locations: store.getState().locations,
     });
 });
-
-// const store = createStore(rootReducer);
 
 export default store;

@@ -5,7 +5,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { connect } from "react-redux";
-import InputLabel from "@material-ui/core/InputLabel";
 
 const mapStateToProps = state => {
     return { categories: state.categories };
@@ -30,6 +29,7 @@ const selectStyle = {
     margin: 0
 };
 
+// The select menu for the location edit form
 const EditSelect = ({ categories, handleUpdateInput, currentCategory }) => {
 
     const classes = useStyles();

@@ -10,7 +10,7 @@ import CancelEditIcon from '@material-ui/icons/CancelPresentation';
 import PropTypes from "prop-types";
 import clsx from 'clsx';
 import MapIcon from '@material-ui/icons/Public';
-import ListIcon from '@material-ui/icons/ViewList';
+import BackIcon from '@material-ui/icons/ArrowBack';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const useToolbarStyles = makeStyles(theme => ({
@@ -44,14 +44,10 @@ const LocationsListToolbar = props => {
     const classes = useToolbarStyles();
     const { numSelected, uncheckSelects, makeEditable, handleMapVisibility, editable } = props;
 
-    // const handleEditClick = () => {
-    //     makeEditable
-    //
-
     const handleDelete = (selected) => {
         props.deleteLocation(selected)
         uncheckSelects()
-    }
+    };
 
     return (
         <Toolbar
@@ -82,9 +78,9 @@ const LocationsListToolbar = props => {
                                             <IconButton aria-label="edit" onClick={() => makeEditable()}>
                                                 {editable ? (
                                                     <CancelEditIcon />
-                                                    ) : (
-                                                        <EditIcon />
-                                                    )}
+                                                ) : (
+                                                    <EditIcon />
+                                                )}
                                             </IconButton>
                                         </Tooltip>
                                     </td>
@@ -98,7 +94,7 @@ const LocationsListToolbar = props => {
                                 </div>
                                 <td>
                                     {props.showActions ? (
-                                        <Tooltip title="Map">
+                                        <Tooltip title="View locations on map">
                                             <IconButton onClick={() => handleMapVisibility()}>
                                                 <MapIcon />
                                             </IconButton>
@@ -106,7 +102,7 @@ const LocationsListToolbar = props => {
                                     ) : (
                                         <Tooltip title="Back to list">
                                             <IconButton onClick={() => handleMapVisibility()}>
-                                                <ListIcon />
+                                                <BackIcon />
                                             </IconButton>
                                         </Tooltip>
                                     )}
@@ -116,15 +112,15 @@ const LocationsListToolbar = props => {
                     </div>
                 ) : (
                     <div>
-                            <Tooltip title={props.showActions ? "Map" : "Back to list"}>
-                                <IconButton  onClick={() => handleMapVisibility()}>
-                                    {props.showActions ? (
+                        <Tooltip title={props.showActions ? "Map" : "Back to list"}>
+                            <IconButton  onClick={() => handleMapVisibility()}>
+                                {props.showActions ? (
                                     <MapIcon />
-                                    ) : (
-                                    <ListIcon />
-                                    )}
-                                </IconButton>
-                            </Tooltip>
+                                ) : (
+                                    <BackIcon />
+                                )}
+                            </IconButton>
+                        </Tooltip>
                     </div>
                 )}
             </div>
